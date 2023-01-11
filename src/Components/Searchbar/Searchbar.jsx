@@ -1,8 +1,13 @@
 import { Component } from "react";
+import PropTypes from 'prop-types';
 
 import { Button, ButtonLabel, Form, Header, Input } from "./Searchbar.styled";
 
 export class Searchbar extends Component {
+	static propTypes = {
+		getInputValue: PropTypes.func.isRequired
+	};
+
 	state = {
 		search: ''
 	}
@@ -11,12 +16,18 @@ export class Searchbar extends Component {
 		this.setState({
 			search: e.target.value
 		})
-	}
+	};
+
+	handleSearch = e => {
+		e.preventDefault();
+		this.props.getInputValue(this.state.search);
+		this.setState({ search: '' });
+	};
 
 	render() {
 		return (
 			<Header>
-				<Form onSubmit={this.handleChange}>
+				<Form onSubmit={this.handleSearch}>
 					<Button type="submit">
 						<ButtonLabel>Search</ButtonLabel>
 					</Button>
