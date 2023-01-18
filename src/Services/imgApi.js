@@ -13,7 +13,7 @@ export const getImages = async (search, page) => {
 			image_type: 'photo',
 			orientation: 'horizontal',
 			per_page: 12,
-		},
+		}
 	});
 
 	return data;

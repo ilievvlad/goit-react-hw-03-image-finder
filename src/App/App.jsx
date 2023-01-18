@@ -1,12 +1,12 @@
 import { Component } from "react";
 
-import { getImages } from "services/imgApi";
-
 import { ImageGallery } from "Components/ImageGallery/ImageGallery";
 import { Searchbar } from "Components/Searchbar/Searchbar"
 import { Modal } from "Components/Modal/Modal";
 import { Button } from "Components/Button/Button";
 import { Loader } from "Components/Loader/Loader";
+
+import { getImages } from "services/imgApi";
 
 export class App extends Component {
 	state = {
