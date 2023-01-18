@@ -6,7 +6,7 @@ import { Modal } from "Components/Modal/Modal";
 import { Button } from "Components/Button/Button";
 import { Loader } from "Components/Loader/Loader";
 
-import { getImages } from "services/imgApi";
+import { getImages } from "services/imgApi.js";
 
 export class App extends Component {
 	state = {
