@@ -6,39 +6,42 @@ import { Modalka, Overlay } from "./Modal.styled";
 export class Modal extends Component {
 
 	static propTypes = {
-		url: PropTypes.string.isRequired,
+		img: PropTypes.shape({
+			src: PropTypes.string.isRequired,
+			alt: PropTypes.string.isRequired,
+		}).isRequired,
 		onClose: PropTypes.func.isRequired
 	};
 
-	state = {}
-
 	componentDidMount() {
-		window.addEventListener('keydown', this.clickEsc);
+		window.addEventListener('keydown', this.handleClickEsc);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('keydown', this.clickEsc);
+		window.removeEventListener('keydown', this.handleClickEsc);
 	}
 
-	clickBackdrop = e => {
-		if (e.target === e.currentTarget) {
-			this.props.onClose();
-		}
-	}
-
-	clickEsc = e => {
+	handleClickEsc = e => {
 		if (e.code === 'Escape') {
 			this.props.onClose();
 		}
 	}
 
+	handleClickBackdrop = e => {
+		if (e.target === e.currentTarget) {
+			this.props.onClose();
+		}
+	}
+
 	render() {
+		const { img: { src, alt } } = this.props;
+
 		return (
-			<Overlay onClick={this.clickBackdrop}>
+			<Overlay onClick={this.handleClickBackdrop}>
 				<Modalka>
-					<img src={this.props.url} alt="" />
+					<img src={src} alt={alt} />
 				</Modalka>
-			</Overlay >
+			</Overlay>
 		);
 	}
 };

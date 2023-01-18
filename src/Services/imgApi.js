@@ -1,7 +1,20 @@
-export default async function getImages(inputValue, page = 1) {
-	const url = 'https://pixabay.com/api/';
-	const API_KEY = '31248055-e075bd58b7f60ee40b8d7aef1';
+import axios from 'axios';
 
-	return await fetch(`${url}?q=${inputValue}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`)
-		.then(res => res.json());
-}
+const imagesApi = axios.create({
+	baseURL: 'https://pixabay.com/',
+});
+
+export const getImages = async (search, page) => {
+	const { data } = await imagesApi.get('api/', {
+		params: {
+			q: search,
+			page,
+			key: '31274725-b360bae12e89bdbfdfe087168',
+			image_type: 'photo',
+			orientation: 'horizontal',
+			per_page: 12,
+		},
+	});
+
+	return data;
+};

@@ -5,23 +5,23 @@ import { Button, ButtonLabel, Form, Header, Input } from "./Searchbar.styled";
 
 export class Searchbar extends Component {
 	static propTypes = {
-		getInputValue: PropTypes.func.isRequired
+		onSubmit: PropTypes.func.isRequired
 	};
 
 	state = {
-		search: ''
+		inputValue: ''
 	}
 
 	handleChange = e => {
 		this.setState({
-			search: e.target.value
+			inputValue: e.target.value
 		})
 	};
 
 	handleSearch = e => {
 		e.preventDefault();
-		this.props.getInputValue(this.state.search);
-		this.setState({ search: '' });
+		this.props.onSubmit(this.state.inputValue);
+		this.setState({ inputValue: '' });
 	};
 
 	render() {
@@ -37,7 +37,7 @@ export class Searchbar extends Component {
 						autoFocus
 						placeholder="Search images and photos"
 						onChange={this.handleChange}
-						value={this.state.search}
+						value={this.state.inputValue}
 					/>
 				</Form>
 			</Header >
