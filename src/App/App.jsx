@@ -29,7 +29,7 @@ export class App extends Component {
 	}
 
 	handleSearch = value => {
-		this.setState({ search: value, page: 1 });
+		this.setState({ images: [], search: value, page: 1 });
 	}
 
 	fetchData = async (search = '', page = 1) => {
